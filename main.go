@@ -77,7 +77,7 @@ func submitHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Unmarshal the JSON payload
-	var payload map[string]interface{}
+	var payload altcha.Payload
 	if err := json.Unmarshal(decodedPayload, &payload); err != nil {
 		http.Error(w, "Failed to parse Altcha payload", http.StatusBadRequest)
 		return
