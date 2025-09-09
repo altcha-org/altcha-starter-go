@@ -69,21 +69,7 @@ func submitHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Decode the Base64 encoded payload
-	decodedPayload, err := base64.StdEncoding.DecodeString(formData)
-	if err != nil {
-		http.Error(w, "Failed to decode Altcha payload", http.StatusBadRequest)
-		return
-	}
-
-	// Unmarshal the JSON payload
-	var payload altcha.Payload
-	if err := json.Unmarshal(decodedPayload, &payload); err != nil {
-		http.Error(w, "Failed to parse Altcha payload", http.StatusBadRequest)
-		return
-	}
-
-	verified, err := altcha.VerifySolution(payload, altchaHMACKey, true)
+	verified, err := altcha.VerifySolution(formData, altchaHMACKey, true)
 	if err != nil || !verified {
 		http.Error(w, "Invalid Altcha payload", http.StatusBadRequest)
 		return
