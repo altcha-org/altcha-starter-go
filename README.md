@@ -32,13 +32,6 @@ The server requires the following environment variables for configuration:
 
 - `ALTCHA_HMAC_KEY`: Secret key used for HMAC in ALTCHA challenge generation (optional, generated if not provided).
 
-You can create a `.env` file in the root directory to set these environment variables:
-
-```ini
-PORT=3000
-ALTCHA_HMAC_KEY=your_custom_hmac_key
-```
-
 ## Modes of Operation
 
 - **Self-Hosted**: In fully self-hosted mode, configure your `ALTCHA_HMAC_KEY` (a secure randomly generated key) and utilize the `GET /altcha` as a `challengeurl` and the `POST /submit` endpoint as the form's `action`.
